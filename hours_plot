@@ -1,0 +1,14 @@
+# read in data 
+out_hr<- read.csv("outages_expanded.csv", sep = ",", header = TRUE)
+
+# count the occurance for hours
+count_hr<- out_hr%>%
+  group_by(possible_duration_hours)%>%
+  count(possible_duration_hours)
+# plot the distribution of data for hours
+ggplot(data = count_hr, aes(x = possible_duration_hours, y = n)) +
+geom_point() +
+theme(panel.background = element_rect(fill = "white"),
+axis.line.x=element_line(),
+axis.line.y=element_line()) +
+ggtitle("hours of outage")
